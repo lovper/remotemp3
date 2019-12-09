@@ -1,6 +1,40 @@
 from pygame import mixer
+import os
 
-mixer.init()
-mixer.music.load("C:/Users/Love/Music/Hip-hop/Modern/Nujabes/2003 Metaphorical Music/02 Horn In The Middle.mp3")
-mixer.music.play()
-input()
+mdir = input('Where is your music?: ')
+play = True
+songs = []
+songIndex = 0
+
+for root, dirs, files in os.walk(os.path.normpath(mdir)):
+    for file in files:
+        path = root + '/' + file
+        songs.append(path)
+
+for song in songs:
+    print(songIndex, song)
+
+
+while play:
+    choice = input('Choose a song with corresponding number: ')
+    try:
+        choice = int(choice)
+        choice = songs[choice]
+        mixer.init()
+        mixer.music.load(choice)
+        mixer.music.play()
+    except:
+        if choice == 'pause':
+            try:
+                mixer.music.pause()
+            except:
+                print('No music playing')
+        elif choice == 'play':
+            try:
+                mixer.music.unpause()
+            except:
+                print('No music choosen')
+        elif choice == 'stop':
+            break
+        else:
+            print('Not a choice')

@@ -1,5 +1,4 @@
 HIGH PRIORITY:
-    Spela upp ljudfiler genom python
     Skapa server för att ta emot requests
     Skapa client som skickar requests
 
@@ -16,3 +15,4 @@ Quality Of Life
 
 
 DONE:
+    Spela upp ljudfiler genom python
