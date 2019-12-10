@@ -4,7 +4,6 @@ import os
 mdir = input('Where is your music?: ')
 play = True
 songs = []
-songIndex = 0
 
 for root, dirs, files in os.walk(os.path.normpath(mdir)):
     for file in files:
@@ -12,7 +11,7 @@ for root, dirs, files in os.walk(os.path.normpath(mdir)):
         songs.append(path)
 
 for song in songs:
-    print(songIndex, song)
+    print(songs.index(song), song)
 
 
 while play:
