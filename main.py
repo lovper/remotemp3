@@ -35,5 +35,11 @@ while play:
                 print('No music choosen')
         elif choice == 'stop':
             break
+        elif choice == 'list':
+            try:
+                for song in songs:
+                    print(songs.index(song), song)
+            except:
+                print('Error')
         else:
             print('Not a choice')
