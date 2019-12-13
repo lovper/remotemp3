@@ -1,6 +1,8 @@
 HIGH PRIORITY:
     Skapa server för att ta emot requests
     Skapa client som skickar requests
+    Spara inställningar
+    Bygg om main som klass
 
 MEDIUM PRIORITY
     Mappstruktur sorterat efter genre, artist, album etc...
