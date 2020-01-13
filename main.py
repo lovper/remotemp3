@@ -11,35 +11,44 @@ for root, dirs, files in os.walk(os.path.normpath(mdir)):
         songs.append(path)
 
 for song in songs:
-    print(songs.index(song), song)
+    print(songs.index(song), song),
+
+
 
 
 while play:
-    choice = input('Choose a song with corresponding number: ')
+    inp = input('Input: ')
     try:
-        choice = int(choice)
-        choice = songs[choice]
+        inp = int(inp)
+        inp = songs[inp]
         mixer.init()
-        mixer.music.load(choice)
+        mixer.music.load(inp)
         mixer.music.play()
     except:
-        if choice == 'pause':
+        if inp == 'pause':
             try:
                 mixer.music.pause()
             except:
                 print('No music playing')
-        elif choice == 'play':
+        elif inp == 'play':
             try:
                 mixer.music.unpause()
             except:
                 print('No music choosen')
-        elif choice == 'stop':
+        elif inp == 'stop':
             break
-        elif choice == 'list':
+        elif inp == 'list':
             try:
                 for song in songs:
                     print(songs.index(song), song)
             except:
                 print('Error')
+        elif inp == 'help':
+            print('\n---Try one of these---\n')
+            print('pause - pauses music')
+            print('play - continue playing/unpause')
+            print('stop - Exits the program')
+            print('list - lists all music')
+            print('\n')
         else:
-            print('Not a choice')
+            print('Not a inp')
