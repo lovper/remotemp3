@@ -6,9 +6,12 @@ port = 12345
 s.bind((host, port))
 
 s.listen(5)
+c, addrs = s.accept()
+print('CONNECTED: ', addrs)
 while True:
-    c, addrs = s.accept()
-    print('CONNECTED: ', addrss)
-    r=c.recv(1024)
-    print(r.decode('utf-8'))
-    c.close()
+    r = c.recv(1024)
+    r = r.decode('utf-8')
+    if r != 'stop':
+        print(r)
+    else:
+        break

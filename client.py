@@ -3,12 +3,14 @@ import socket
 s = socket.socket()
 host = socket.gethostname()
 port = 12345
-
 s.connect((host, port))
-while True:
-    svstr = input('Chat> ')
+
+client = True
+while client:
+    svstr = input('Input> ')
     svbyte = svstr.encode('utf-8')
     s.send(svbyte)
-    s.close()
-
+    if svstr == 'stop':
+        client = False
+s.close()
 
