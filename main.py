@@ -11,9 +11,7 @@ for root, dirs, files in os.walk(os.path.normpath(mdir)):
         songs.append(path)
 
 for song in songs:
-    print(songs.index(song), song),
-
-
+    print(songs.index(song), song)
 
 
 while play:
@@ -36,6 +34,11 @@ while play:
             except:
                 print('No music choosen')
         elif inp == 'stop':
+            try:
+                mixer.music.stop()
+            except:
+                print('No music playing')
+        elif inp == 'exit':
             break
         elif inp == 'list':
             try:
@@ -47,8 +50,9 @@ while play:
             print('\n---Try one of these---\n')
             print('pause - pauses music')
             print('play - continue playing/unpause')
-            print('stop - Exits the program')
+            print('stop - stops the music')
             print('list - lists all music')
+            print('exit - exits the program')
             print('\n')
         else:
-            print('Not a inp')
+            print('Not an input')
