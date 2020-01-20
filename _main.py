@@ -12,6 +12,13 @@ class Main:
                 path = root + '/' + file
                 songs.append(path)
 
+    def slist(self):
+        rstr = ''
+        for song in songs:
+            apstr = song
+            rstr += str(songs.index(song)) + ': ' + apstr + '\n'
+        return rstr
+
     def inp(self, inp):
         try:
             inp = int(inp)
@@ -19,37 +26,41 @@ class Main:
             mixer.init()
             mixer.music.load(inp)
             mixer.music.play()
+            return 'Playing...'
         except:
             if inp == 'pause':
                 try:
                     mixer.music.pause()
+                    return 'Paused'
                 except:
-                    print('No music playing')
+                    return 'No music playing'
             elif inp == 'play':
                 try:
                     mixer.music.unpause()
+                    return 'Playback started'
                 except:
-                    print('No music choosen')
+                    return 'No music choosen'
             elif inp == 'stop':
                 try:
                     mixer.music.stop()
+                    return 'Playback stopped'
                 except:
-                    print('No music playing')
+                    return 'No music playing'
             elif inp == 'exit':
                 return "exit"
             elif inp == 'list':
                 try:
-                    for song in songs:
-                        print(songs.index(song), song)
+                    p = self.slist()
+                    print(p)
+                    return p
                 except:
-                    print('Error')
+                    return 'Unknown error'
             elif inp == 'help':
-                print('\n---Try one of these---\n')
-                print('pause - pauses music')
-                print('play - continue playing/unpause')
-                print('stop - stops the music')
-                print('list - lists all music')
-                print('exit - exits the program')
-                print('\n')
+                return '\n---Try one of these---\n' \
+                       'pause - pauses music\n' \
+                       'play - continue playing/unpause\n' \
+                       'stop - stops the music\n' \
+                       'list - lists all music\n' \
+                       'exit - exits the program\n'
             else:
-                print('Not an input')
+                return 'Not an input'
