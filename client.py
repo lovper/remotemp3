@@ -8,6 +8,8 @@ s.connect((host, port))
 client = True
 while client:
     svstr = input('Input> ')
+    if not svstr:
+        continue
     svbyte = svstr.encode('utf-8')
     s.send(svbyte)
     r = s.recv(1024).decode('utf-8')

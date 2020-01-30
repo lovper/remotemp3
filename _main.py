@@ -4,6 +4,57 @@ import os
 songs = []
 
 
+def play(inp):
+    inp = int(inp)
+    inp = songs[inp]
+    mixer.init()
+    mixer.music.load(inp)
+    mixer.music.play()
+    rtstr = 'Playing: '+inp
+    return rtstr
+
+
+def pause():
+    try:
+        mixer.music.pause()
+        return 'Paused'
+    except:
+        return 'No music playing'
+
+
+def resume():
+    try:
+        mixer.music.unpause()
+        return 'Playing resumed'
+    except:
+        return 'No music playing'
+
+
+def stop():
+    try:
+        mixer.music.stop()
+        return 'Playback stopped'
+    except:
+        return 'Nothing playing'
+
+
+def exit():
+    return 'exit'
+
+
+def slist():
+    try:
+        rstr = ''
+        for song in songs:
+            apstr = song
+            rstr += str(songs.index(song)) + ': ' + apstr + '\n'
+        return rstr
+    except:
+        'Error listing sound files'
+
+
+funcs = ['play', 'resume', 'pause', 'stop', 'exit', 'slist']
+
 class Main:
     def __init__(self, mdir):
         self.mdir = mdir
@@ -12,55 +63,18 @@ class Main:
                 path = root + '/' + file
                 songs.append(path)
 
-    def slist(self):
-        rstr = ''
-        for song in songs:
-            apstr = song
-            rstr += str(songs.index(song)) + ': ' + apstr + '\n'
-        return rstr
-
     def inp(self, inp):
-        try:
-            inp = int(inp)
-            inp = songs[inp]
-            mixer.init()
-            mixer.music.load(inp)
-            mixer.music.play()
-            return 'Playing...'
-        except:
-            if inp == 'pause':
-                try:
-                    mixer.music.pause()
-                    return 'Paused'
-                except:
-                    return 'No music playing'
-            elif inp == 'play':
-                try:
-                    mixer.music.unpause()
-                    return 'Playback started'
-                except:
-                    return 'No music choosen'
-            elif inp == 'stop':
-                try:
-                    mixer.music.stop()
-                    return 'Playback stopped'
-                except:
-                    return 'No music playing'
-            elif inp == 'exit':
-                return "exit"
-            elif inp == 'list':
-                try:
-                    p = self.slist()
-                    print(p)
-                    return p
-                except:
-                    return 'Unknown error'
-            elif inp == 'help':
-                return '\n---Try one of these---\n' \
-                       'pause - pauses music\n' \
-                       'play - continue playing/unpause\n' \
-                       'stop - stops the music\n' \
-                       'list - lists all music\n' \
-                       'exit - exits the program\n'
+        if inp.isnumeric():
+            try:
+                rt = play(inp)
+                return rt
+            except:
+                return 'Error'
+        else:
+            if inp in funcs:
+                e = inp+'()'
+                exec('global i; i = %s' % e)
+                global i
+                return i
             else:
-                return 'Not an input'
+                return 'Fuck you'
