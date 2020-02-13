@@ -11,7 +11,11 @@ while client:
     if not svstr:
         continue
     svbyte = svstr.encode('utf-8')
-    s.send(svbyte)
+    try:
+        s.send(svbyte)
+    except:
+        print('Connection lost, exiting...')
+        break
     r = s.recv(1024).decode('utf-8')
     if r == 'exit':
         break

@@ -1,4 +1,5 @@
-import socket, _main
+import socket
+import _main
 
 with open('config.ini', "r") as f:
     if f.mode == 'r':
@@ -8,6 +9,13 @@ with open('config.ini', "r") as f:
         print('Error reading settings')
 
 
+def pslisten():
+    global c
+    s.listen(5)
+    c, addrs = s.accept()
+    print('CONNECTED: ', addrs)
+
+
 main = _main.Main(dir)
 
 s = socket.socket()
@@ -15,13 +23,19 @@ host = socket.gethostname()
 port = 12345
 s.bind((host, port))
 
-s.listen(5)
-c, addrs = s.accept()
-print('CONNECTED: ', addrs)
-
+pslisten()
 
 while True:
-    r = c.recv(1024).decode('utf-8')
+    try:
+        r = c.recv(1024).decode('utf-8')
+    except:
+        pslisten()
+        continue
     returnstr = main.inp(r)
     returnbyte = returnstr.encode('utf-8')
-    c.send(returnbyte)
+    try:
+        c.send(returnbyte)
+    except:
+        pslisten()
+        continue
+

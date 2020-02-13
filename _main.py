@@ -53,7 +53,17 @@ def slist():
         'Error listing sound files'
 
 
-funcs = ['play', 'resume', 'pause', 'stop', 'exit', 'slist']
+def help():
+    return '\n-----Try one of these-----\n' \
+           'pause   -   pauses music\n' \
+           'resume  -   continue playing/unpause\n' \
+           'stop    -   stops the music\n' \
+           'slist   -   lists all music\n' \
+           'exit    -   exits the program\n' \
+           'help    -   this help list, duh\n'
+
+
+funcs = ['resume', 'pause', 'stop', 'exit', 'slist', 'help']
 
 class Main:
     def __init__(self, mdir):
@@ -77,4 +87,4 @@ class Main:
                 global i
                 return i
             else:
-                return 'Fuck you'
+                return 'Not an input'
