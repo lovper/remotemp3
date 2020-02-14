@@ -1,9 +1,20 @@
 import socket
 
 s = socket.socket()
-host = socket.gethostname()
-port = 12345
-s.connect((host, port))
+
+
+def getserver():
+    try:
+        host = input('What is the IP of the host?\n>>')
+        port = 12345
+        s.connect((host, port))
+    except:
+        print('Couldn\'t connect, try again')
+        getserver()
+
+
+getserver()
+
 
 client = True
 while client:

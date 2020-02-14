@@ -48,6 +48,7 @@ def slist():
         for song in songs:
             apstr = song
             rstr += str(songs.index(song)) + ': ' + apstr + '\n'
+        rstr += 'Enter the number corresponding to the song of your choice'
         return rstr
     except:
         'Error listing sound files'

@@ -19,7 +19,7 @@ def pslisten():
 main = _main.Main(dir)
 
 s = socket.socket()
-host = socket.gethostname()
+host = '192.168.100.172'
 port = 12345
 s.bind((host, port))
 
